@@ -14,7 +14,6 @@ var defaultOptions = {
   scssPath: scssPath,
   cssPath: cssPath,
   filename: 'style.scss',
-  output: path.join(cssPath, 'style.css'),
   includePaths: [scssPath, bowerPath],
   postCss: []
 };
@@ -22,6 +21,7 @@ var defaultOptions = {
 module.exports = (options) => {
   options = defaults(options, defaultOptions);
   options.includePaths = [].concat(options.includePaths);
+  options.postCss = [].concat(options.postCss);
   options.file = options.file || path.join(options.scssPath, options.filename);
   return renderScss(options)
   .then(result => postcss(
