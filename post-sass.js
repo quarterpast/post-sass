@@ -15,12 +15,13 @@ var defaultOptions = {
   cssPath: cssPath,
   file: path.join(scssPath, 'style.scss'),
   output: path.join(cssPath, 'style.css'),
-  includePath: [scssPath, bowerPath],
+  includePaths: [scssPath, bowerPath],
   postCss: []
 };
 
 module.exports = (options) => {
   options = defaults(options, defaultOptions);
+  options.includePaths = [].concat(options.includePaths);
   return renderScss(options)
   .then(result => postcss(
     options.postCss.map(p => require(p))
@@ -32,4 +33,4 @@ module.exports.writeToFile = (options) => {
   return mkdirp(options.cssPath)
 	.then(() => module.exports(options))
 	.then(css => fs.writeFile(options.output, css, 'utf8'));
-}
+};
