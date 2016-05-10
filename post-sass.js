@@ -13,7 +13,7 @@ var bowerPath = path.resolve('bower_components');
 var defaultOptions = {
   scssPath: scssPath,
   cssPath: cssPath,
-  file: path.join(scssPath, 'style.scss'),
+  filename: 'style.scss',
   output: path.join(cssPath, 'style.css'),
   includePaths: [scssPath, bowerPath],
   postCss: []
@@ -22,6 +22,7 @@ var defaultOptions = {
 module.exports = (options) => {
   options = defaults(options, defaultOptions);
   options.includePaths = [].concat(options.includePaths);
+  options.file = options.file || path.join(options.scssPath, options.filename);
   return renderScss(options)
   .then(result => postcss(
     options.postCss.map(p => require(p))
@@ -30,6 +31,7 @@ module.exports = (options) => {
 
 module.exports.writeToFile = (options) => {
   options = defaults(options, defaultOptions);
+  options.output = options.output || path.join(options.cssPath, path.basename(options.filename, '.scss') + '.css');
   return mkdirp(options.cssPath)
 	.then(() => module.exports(options))
 	.then(css => fs.writeFile(options.output, css, 'utf8'));
