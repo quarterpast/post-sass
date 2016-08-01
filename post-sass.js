@@ -18,6 +18,13 @@ var defaultOptions = {
   postCss: []
 };
 
+var initPlugin = (plugin) => {
+  var name = Array.isArray(plugin) ? plugin[0] : plugin;
+  var options = Array.isArray(plugin) ? plugin[1] : {};
+
+  return require(name)(options);
+};
+
 module.exports = (options) => {
   options = defaults(options, defaultOptions);
   options.includePaths = [].concat(options.includePaths);
@@ -25,7 +32,7 @@ module.exports = (options) => {
   options.file = options.file || path.join(options.scssPath, options.filename);
   return renderScss(options)
   .then(result => postcss(
-    options.postCss.map(p => require(p))
+    options.postCss.map(initPlugin)
   ).process(result.css));
 };
 
