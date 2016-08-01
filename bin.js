@@ -7,9 +7,9 @@ var log = require('@quarterto/log-promise')(
 	err => err.stack
 );
 
-argv.postCss = [].concat(argv.postCss || []).map(plugin => [
+argv.postCss = [].concat(argv.postCss || []).map(plugin => plugin._ ? [
 	plugin._[0],
 	plugin,
-]);
+] : plugin);
 
 log(postsass.writeToFile(argv)).catch(() => process.exit(1));
