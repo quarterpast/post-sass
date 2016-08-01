@@ -4,9 +4,6 @@
   "description": "",
   "main": "post-sass.js",
   "bin": "bin.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/quarterto/post-sass.git"
