@@ -11,6 +11,6 @@ var hjson = require('hjson');
 argv.postCss = [].concat(argv.postCss || []).map(plugin => plugin._ ? {
 	name: plugin._[0],
 	options: Object.assign(plugin, hjson.parse(plugin._[1] || '')),
-} : {plugin: plugin, options: {}});
+} : {name: plugin, options: {}});
 
 log(postsass.writeToFile(argv)).catch(() => process.exit(1));

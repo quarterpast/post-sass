@@ -22,7 +22,6 @@ var initPlugin = (plugin) => {
   var name = Array.isArray(plugin) ? plugin[0] : plugin.name || plugin;
   var options = Array.isArray(plugin) ? plugin[1] : plugin.options || {};
 
-  console.log(name, options);
   return require(name)(options);
 };
 
