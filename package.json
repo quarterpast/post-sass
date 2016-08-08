@@ -1,6 +1,6 @@
 {
   "name": "@quarterto/post-sass",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "",
   "main": "post-sass.js",
   "bin": "bin.js",
