@@ -23,7 +23,7 @@
     "lodash.defaults": "^4.0.1",
     "minimist": "^1.2.0",
     "mkdirp-promise": "^1.0.4",
-    "node-sass": "^3.7.0",
+    "node-sass": "^4.9.0",
     "postcss": "^5.0.21",
     "subarg": "^1.0.0"
   }
